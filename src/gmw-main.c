@@ -1659,7 +1659,12 @@ main (int argc, char **argv)
 	g_autoptr(GError) error = NULL;
 	g_autoptr(GmwPrivate) priv = g_new0 (GmwPrivate, 1);
 	g_autoptr(GOptionContext) context = NULL;
+        gchar *image_file;
+ 
 	const GOptionEntry options[] = {
+                { "image-file", 'i', 0, G_OPTION_ARG_STRING, &image_file,
+			/* TRANSLATORS: command line option */
+			_("Use given disk image"), NULL },            
 		{ "rename-labels", '\0', 0, G_OPTION_ARG_NONE, &priv->rename_labels,
 			/* TRANSLATORS: command line option */
 			_("Allow renaming the labels on hubs"), NULL },
@@ -1738,6 +1743,11 @@ main (int argc, char **argv)
 			 priv->switch_probe, "active",
 			 G_SETTINGS_BIND_DEFAULT);
 
+        if(strlen(image_file)){
+            g_settings_set_string (priv->settings, "filename", image_file);
+        }
+        
+        
 	/* wait */
 	return g_application_run (G_APPLICATION (priv->application), argc, argv);
 }

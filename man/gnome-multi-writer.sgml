@@ -55,6 +55,14 @@
     <variablelist>
       <varlistentry>
         <term>
+          <option>--image-file</option>
+        </term>
+        <listitem>
+          <para>Import given imag file</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
           <option>--help</option>
         </term>
         <listitem>
